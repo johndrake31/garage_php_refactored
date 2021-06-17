@@ -12,19 +12,14 @@ if (!$garage_id) {
 }
 
 // Find a garage by ID
-$pdo = getPdo();
 
 $garage = findGarageById($garage_id);
 
-
 // ANNONCE SECTION
-
 
 $annonces = findAnnoncesByGarage($garage_id);
 
-
 // SECTION TO RENDER
-
 
 $titreDeLaPage = $garage['name'];
 

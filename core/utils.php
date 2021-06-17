@@ -5,7 +5,8 @@
  * redirect towards the url passed into the function
  * default index redirects towards home page.
  * 
- * @param string
+ * @param string $myString
+ * @return void
  */
 
 
@@ -15,25 +16,19 @@ function redirect(string $myString = "index.php"): void
 }
 
 /**
+ * render recieves a string to pass to the template file path  
+ * as a 2nd arguemnt recieves and array of variables 
+ * used in the template to render.
  * 
- * 
- * 
- * @param string
- * @param array
+ * @param string $template
+ * @param array $donnes
+ * @return void
  */
 function render(string $template, array $donnes): void
-
 {
     extract($donnes);
-
     ob_start();
-
     require_once "templates/$template.html.php";
-    //et ce jusqu'à ce qu'on désactive la memoire tampon
-    //au passage, on récupère son contenu (et donc garages.html.php) pour 
-    //le stocker dans la variable $contenuDeLaPage
-
     $contenuDeLaPage = ob_get_clean();
-
     require_once "templates/layout.html.php";
 }

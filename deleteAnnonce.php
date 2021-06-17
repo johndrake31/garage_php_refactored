@@ -11,7 +11,6 @@ if (!$annonce_id) {
     die('please enter a proper number  in the url for this to delete.');
 }
 
-
 $annonce_to_delete = findAnnonceById($annonce_id);
 
 if (!$annonce_to_delete) {
