@@ -1,8 +1,10 @@
 <?php
-require_once "core/database.php";
 require_once "core/utils.php";
+require_once "core/model/Garage.php";
 
-$garages = findAllGarages();
+$model = new Garage();
+
+$garages = $model->findAll();
 
 $titreDeLaPage = "Garages";
 

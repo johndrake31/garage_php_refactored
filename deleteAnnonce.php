@@ -1,6 +1,6 @@
 <?php
-require_once "core/database.php";
 require_once "core/utils.php";
+require_once "core/model/Annonce.php";
 
 $annonce_id = null;
 //effacer le garage
@@ -11,7 +11,8 @@ if (!$annonce_id) {
     die('please enter a proper number  in the url for this to delete.');
 }
 
-$annonce_to_delete = findAnnonceById($annonce_id);
+$model = new Annonce();
+$annonce_to_delete = $model->find($annonce_id);
 
 if (!$annonce_to_delete) {
     die("Does Not Exist");
@@ -19,6 +20,6 @@ if (!$annonce_to_delete) {
 
 $garage_id = $annonce_to_delete['garage_id'];
 
-deleteAnnonceById($annonce_id);
+$model->delete($annonce_id);
 
 redirect("garage.php?id=$garage_id");

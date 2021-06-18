@@ -1,6 +1,7 @@
 <?php
-require_once "core/database.php";
 require_once "core/utils.php";
+require_once "core/model/Garage.php";
+require_once "core/model/Annonce.php";
 
 $garage_id = null;
 
@@ -12,12 +13,12 @@ if (!$garage_id) {
 }
 
 // Find a garage by ID
-
-$garage = findGarageById($garage_id);
+$modelGarage = new Garage();
+$garage = $modelGarage->find($garage_id);
 
 // ANNONCE SECTION
-
-$annonces = findAnnoncesByGarage($garage_id);
+$modelAnnonce = new Annonce();
+$annonces = $modelAnnonce->findAllByGarage($garage_id);
 
 // SECTION TO RENDER
 
@@ -27,12 +28,3 @@ render(
     "garages/garage",
     compact("garage", "titreDeLaPage", "annonces")
 );
-
-
-// ob_start();
-
-// require_once "templates/garages/garage.html.php";
-
-// $contenuDeLaPage = ob_get_clean();
-
-// require_once "templates/layout.html.php";

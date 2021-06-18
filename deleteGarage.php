@@ -1,6 +1,7 @@
 <?php
 require_once "core/database.php";
 require_once "core/utils.php";
+require_once "core/model/Garage.php";
 
 $garage_id = null;
 
@@ -11,13 +12,13 @@ if (!$garage_id) {
     die('please enter a proper number  in the url for this to delete.');
 }
 
-
-$garage_to_delete = findGarageById($garage_id);
+$model = new Garage();
+$garage_to_delete = $model->find($garage_id);
 
 if (!$garage_to_delete) {
     die("Does Not Exist");
 }
 
-deleteGarageById($garage_id);
+$model->delete($garage_id);
 
 redirect();

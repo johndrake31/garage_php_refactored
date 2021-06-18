@@ -8,8 +8,6 @@
  * @param string $myString
  * @return void
  */
-
-
 function redirect(string $myString = "index.php"): void
 {
     header("Location: $myString");

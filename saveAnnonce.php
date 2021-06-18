@@ -1,6 +1,8 @@
 <?php
-require_once "core/database.php";
 require_once "core/utils.php";
+require_once "core/model/Garage.php";
+require_once "core/model/Annonce.php";
+
 
 $garage_id = null;
 $name = null;
@@ -18,13 +20,15 @@ if (!empty($_POST['price'])) {
 if (!$garage_id || !$name || !$price) {
     die("formulaire mal rempli");
 }
+$modelGarage = new Garage();
+$modelAnnonce = new Annonce();
 
-$garage = findGarageById($garage_id);
+$garage = $modelGarage->find($garage_id);
 
 if (!$garage) {
     die("garage inexistant");
 }
 
-insertAnnonce($name, $price, $garage_id);
+$modelAnnonce->insert($name, $price, $garage_id);
 
 redirect("garage.php?id=$garage_id");
