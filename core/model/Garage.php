@@ -14,13 +14,11 @@ class Garage extends Model
      */
     public function findAll(): array
     {
-
-
         $resultat =  $this->pdo->query('SELECT * FROM garages');
 
-        $garages = $resultat->fetchAll();
+        $item = $resultat->fetchAll();
 
-        return $garages;
+        return $item;
     }
 
     /**
@@ -28,34 +26,29 @@ class Garage extends Model
      * renvoie un tableau contenant un garage, ou un booleen
      * si inexistant
      * 
-     * @param integer $garage_id
+     * @param integer $id
      * @return array|bool
      */
-    public function find(int $garage_id)
+    public function find(int $id)
     {
+        $maRequete = $this->pdo->prepare("SELECT * FROM garages WHERE id =:id");
 
+        $maRequete->execute(['id' => $id]);
 
+        $item = $maRequete->fetch();
 
-        $maRequete = $this->pdo->prepare("SELECT * FROM garages WHERE id =:garage_id");
-
-        $maRequete->execute(['garage_id' => $garage_id]);
-
-        $garage = $maRequete->fetch();
-
-        return $garage;
+        return $item;
     }
 
     /**
      * supprime un garage via son ID
-     * @param integer $garage_id
+     * @param integer $id
      * @return void
      */
-    public function delete(int $garage_id): void
+    public function delete(int $id): void
     {
+        $maRequete = $this->pdo->prepare("DELETE FROM garages WHERE id =:id");
 
-
-        $maRequete = $this->pdo->prepare("DELETE FROM garages WHERE id =:garage_id");
-
-        $maRequete->execute(['garage_id' => $garage_id]);
+        $maRequete->execute(['id' => $id]);
     }
 }

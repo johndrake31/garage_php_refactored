@@ -11,38 +11,36 @@ class Annonce extends Model
      */
     public function findAllByGarage(int $garage_id)
     {
-
-        $maRequeteAnnonces =  $this->pdo->prepare("SELECT * FROM `annonce` WHERE garage_id =:garage_id");
-        $maRequeteAnnonces->execute(['garage_id' => $garage_id]);
-        $annonces = $maRequeteAnnonces->fetchAll();
-        return $annonces;
+        $maRequete =  $this->pdo->prepare("SELECT * FROM `annonce` WHERE garage_id =:garage_id");
+        $maRequete->execute(['garage_id' => $garage_id]);
+        $item = $maRequete->fetchAll();
+        return $item;
     }
 
     /**
      * searches for and returns an array of one listing from the sql BDD
-     * by annonce id.
-     * @param integer $annonce_id
+     * by id.
+     * @param integer $id
      * @return array|boolean  sql table or boolean.
      */
-    public function find(int $annonce_id)
+    public function find(int $id)
     {
 
-        $maRequete =  $this->pdo->prepare("SELECT * FROM `annonce` where id =:annonce_id");
-        $maRequete->execute(['annonce_id' => $annonce_id]);
-        $annonce_to_delete = $maRequete->fetch();
-        return $annonce_to_delete;
+        $maRequete =  $this->pdo->prepare("SELECT * FROM `annonce` where id =:id");
+        $maRequete->execute(['id' => $id]);
+        $item = $maRequete->fetch();
+        return $item;
     }
 
     /**
-     * selects a annonce by id and deletes it from the BDD
-     * @param integer $annonce_id
+     * selects an item by id and deletes it from the BDD
+     * @param integer $id
      * @return void
      */
-    public function delete(int $annonce_id): void
+    public function delete(int $id): void
     {
-
-        $maRequeteDelete =  $this->pdo->prepare("DELETE FROM `annonce` WHERE id =:annonce_id");
-        $maRequeteDelete->execute(['annonce_id' => $annonce_id]);
+        $maRequete =  $this->pdo->prepare("DELETE FROM `annonce` WHERE id =:id");
+        $maRequete->execute(['id' => $id]);
     }
 
 
@@ -55,9 +53,7 @@ class Annonce extends Model
      */
     public function insert(string $name, int $price, int $garage_id): void
     {
-
-        $maRequeteAnnonceC = $this->pdo->prepare("INSERT INTO `annonce` (`name`, `price`, `garage_id`) VALUES (:name, :price, :garage_id)");
-
-        $maRequeteAnnonceC->execute(['name' => $name, 'price' => $price, 'garage_id' => $garage_id]);
+        $maRequete = $this->pdo->prepare("INSERT INTO `annonce` (`name`, `price`, `garage_id`) VALUES (:name, :price, :garage_id)");
+        $maRequete->execute(['name' => $name, 'price' => $price, 'garage_id' => $garage_id]);
     }
 }
