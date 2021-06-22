@@ -14,7 +14,7 @@
 <div class="container">
     <div class="row col-6">
         <h3>Add annonce</h3>
-        <form action="saveAnnonce.php" method="POST">
+        <form action="index.php?controller=annonce&task=save" method="POST">
 
             <input type="hidden" name="garageId" value="<?= $garage['id'] ?>">
             <div class="mb-3">
@@ -53,7 +53,7 @@
                 . "$" . $annonce['price']
                 . "<br>";
             ?>
-            <a href="deleteAnnonce.php?id=<?= $annonce['id']; ?>" class="btn btn-danger m-3">Supprimer cette Annonce</a>
+            <a href="index.php?controller=annonce&task=suppr&id=<?= $annonce['id']; ?>" class="btn btn-danger m-3">Supprimer cette Annonce</a>
             <hr>
     </div>
 <?php }  ?>

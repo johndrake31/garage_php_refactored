@@ -2,8 +2,6 @@
 
 namespace Model;
 
-require_once "core/database.php";
-
 abstract class Model
 {
 
@@ -11,7 +9,7 @@ abstract class Model
     protected $table;
     function __construct()
     {
-        $this->pdo = getPdo();
+        $this->pdo = \Database::getPdo();
     }
 
 

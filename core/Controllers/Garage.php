@@ -2,16 +2,15 @@
 
 namespace Controllers;
 
-require_once "core/database.php";
-require_once "core/utils.php";
-require_once "core/Model/Garage.php";
-require_once "core/Model/Annonce.php";
-require_once "core/Contollers/Controller.php";
 
 class Garage extends Controller
 {
 
     protected $modelName = \Model\Garage::class;
+
+
+
+
 
     /**
      * afficher l'accueil du site
@@ -27,11 +26,16 @@ class Garage extends Controller
         $titreDeLaPage = "Garages";
 
         //on affiche
-        render(
+        \Rendering::render(
             "garages/garages",
             compact('garages', 'titreDeLaPage')
         );
     }
+
+
+
+
+
 
     public function show()
     {
@@ -55,7 +59,7 @@ class Garage extends Controller
 
         $titreDeLaPage = $garage['name'];
 
-        render(
+        \Rendering::render(
             "garages/garage",
             compact("garage", "titreDeLaPage", "annonces")
         );
@@ -81,6 +85,6 @@ class Garage extends Controller
 
         $this->model->delete($garage_id);
 
-        redirect();
+        \Http::redirect();
     }
 }

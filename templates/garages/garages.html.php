@@ -5,8 +5,8 @@
           <p><strong> <?= $garage['address']; ?> </strong></p>
           <p><strong> <?= $garage['description']; ?> </strong></p>
       </div>
-      <a href="garage.php?id=<?= $garage['id']; ?>" class="btn btn-success">voir ce garage</a>
-      <a href="deleteGarage.php?id=<?= $garage['id']; ?>" class="btn btn-danger">Supprimer ce garage</a>
+      <a href="index.php?controller=garage&task=show&id=<?= $garage['id']; ?>" class="btn btn-success">voir ce garage</a>
+      <a href="index.php?controller=garage&task=suppr&id=<?= $garage['id']; ?>" class="btn btn-danger">Supprimer ce garage</a>
       <hr>
 
 

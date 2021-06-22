@@ -1,9 +1,6 @@
 <?php
 
-
 //on récupère les librairies nécéssaires
+require_once "core/autoloading.php";
 
-require_once "core/Controllers/Garage.php";
-$controller = new \Controllers\Garage();
-
-$controller->index();
+\App::process();

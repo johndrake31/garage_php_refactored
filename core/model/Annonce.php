@@ -2,8 +2,6 @@
 
 namespace Model;
 
-require_once "core/Model/Model.php";
-
 class Annonce extends Model
 {
 
