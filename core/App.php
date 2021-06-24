@@ -4,7 +4,8 @@ class App
 {
     public static function process()
     {
-        $controllerName = "garage";
+
+        $controllerName = "cake";
         $task = "index";
 
         if (!empty($_GET['controller'])) {
