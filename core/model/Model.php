@@ -2,6 +2,8 @@
 
 namespace Model;
 
+use PDO;
+
 abstract class Model
 {
 
@@ -21,13 +23,13 @@ abstract class Model
      * @param integer $id
      * @return array|bool
      */
-    public function find(int $id)
+    public function find(int $id, $className)
     {
         $maRequete = $this->pdo->prepare("SELECT * FROM {$this->table} WHERE id =:id");
 
         $maRequete->execute(['id' => $id]);
 
-        $item = $maRequete->fetch();
+        $item = $maRequete->fetchObject($className);
 
         return $item;
     }
@@ -37,13 +39,12 @@ abstract class Model
      * 
      * @return array
      */
-    public function findAll(): array
+    public function findAll(string $className): array
     {
         $resultat =  $this->pdo->query("SELECT * FROM {$this->table}");
-        $item = $resultat->fetchAll();
+        $item = $resultat->fetchAll(PDO::FETCH_CLASS, $className);
         return $item;
     }
-
 
 
     /**

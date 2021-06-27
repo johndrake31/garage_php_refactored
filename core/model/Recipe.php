@@ -2,20 +2,44 @@
 
 namespace Model;
 
+use PDO;
+
 class Recipe extends Model
 {
     protected $table = 'recipes';
+
+    public $id;
+    public $name;
+    public $description;
+    public $cake_id;
+    public $date_added;
+
+
+    public function getMakes()
+    {
+        $modelMakes = new \Model\Make();
+        $nbrOfMakes = $modelMakes->findAllByRecipe($this->id);
+        return $nbrOfMakes;
+    }
+
+    // public function createMakes()
+    // {
+    //     $modelMakes = new \Model\Make();
+    //     $nbrOfMakes = $modelMakes->insertMake($this->id, "recipe_id");
+    //     $nbrOfMakes = $modelMakes->findAllByRecipe($this->id);
+    //     return $nbrOfMakes;
+    // }
 
     /**
      * returns an array of arrays of cake recipes
      * @param integer $cake_id
      * @return array|boolean 
      */
-    public function findAllbyCakeId(int $cake_id)
+    public function findAllbyCakeId(int $cake_id, $className)
     {
         $maRequete =  $this->pdo->prepare("SELECT * FROM recipes WHERE cake_id =:cake_id");
         $maRequete->execute(["cake_id" => $cake_id]);
-        $items = $maRequete->fetchAll();
+        $items = $maRequete->fetchAll(PDO::FETCH_CLASS, $className);
         return $items;
     }
 

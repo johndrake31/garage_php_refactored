@@ -6,6 +6,26 @@ class Cake extends Model
 {
     protected $table = 'cakes';
 
+    public $id;
+    public $title;
+    public $flavor;
+    public $description;
+
+    /**
+     * getMakes seaches bdd by cake id and returns an integer count of all 
+     * affiliated "makes".
+     * @param none
+     * @return integer
+     */
+    public function getMakes(): int
+    {
+        $modelMakes = new \Model\Make();
+        $nbrOfMakes = $modelMakes->findAllByCake($this->id);
+        return $nbrOfMakes;
+    }
+
+
+
     /**
      * creates a cake and inserts it into the BDD
      * @param string $title

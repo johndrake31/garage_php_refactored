@@ -9,9 +9,6 @@ class Cake extends Controller
     protected $modelName = \Model\Cake::class;
 
 
-
-
-
     /**
      * afficher l'accueil du site
      * 
@@ -20,7 +17,7 @@ class Cake extends Controller
     public function index()
     {
         //on recupère tous les cakes
-        $cakes = $this->model->findAll();
+        $cakes = $this->model->findAll($this->modelName);
 
         //on fixe le titre de la page
         $titreDeLaPage = "Cakes";
@@ -50,21 +47,27 @@ class Cake extends Controller
         }
 
         // Find a cake by ID
-        $cake = $this->model->find($cake_id);
+        $cake = $this->model->find($cake_id, $this->modelName);
+
+
 
         // ANNONCE SECTION
         $modelRecipe = new \Model\Recipe();
-        $recipes = $modelRecipe->findAllbyCakeId($cake_id);
+
+
+        $recipes = $modelRecipe->findAllbyCakeId($cake_id, \Model\Recipe::class);
+
 
         // SECTION TO RENDER
 
-        $titreDeLaPage = $cake['title'];
+        $titreDeLaPage = $cake->title;
 
         \Rendering::render(
             "cakes/cake",
-            compact("cake", "titreDeLaPage", 'recipes')
+            compact("cake", "titreDeLaPage", 'recipes',)
         );
     }
+
 
 
     /**

@@ -56,12 +56,12 @@ class Recipe extends Controller
         }
 
         // Find a cake by ID
-        $recipe = $this->model->find($recipe_id);
+        $recipe = $this->model->find($recipe_id, $this->modelName);
 
 
         // SECTION TO RENDER
 
-        $titreDeLaPage = $recipe['name'];
+        $titreDeLaPage = $recipe->name;
 
         \Rendering::render(
             "recipe/recipe",
@@ -131,8 +131,8 @@ class Recipe extends Controller
         }
 
         $modelCake = new \Model\Cake();
-
-        $cake = $modelCake->find($cake_id);
+        $modelNameCake = \Model\Cake::class;
+        $cake = $modelCake->find($cake_id, $modelNameCake);
 
         if (!$cake) {
             die("cake inexistant");
