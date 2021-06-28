@@ -7,7 +7,7 @@
         <h4><strong> <?= $cake->flavor; ?> </strong></h4>
         <p><strong> <?= $cake->description; ?> </strong></p>
 
-        <p><strong> <a class=" btn bg-primary border border-0 me-2 text-white">Makes 🤍</a> <?= $cake->getMakes(); ?> </strong></p>
+        <p><strong> <a href="index.php?controller=make&task=addMakeCake&show=true&id=<?= $cake->id; ?>" class=" btn bg-primary border border-0 me-2 text-white">Makes 🤍</a> <?= $cake->getMakes(); ?> </strong></p>
 
 
 
@@ -97,7 +97,7 @@
 
                     <!-- Makes BTN -->
                     <form action="index.php?controller=recipe&task=suppr" method="POST">
-                        <p><button class="btn btn-primary me-2"> Makes 🤍 </button> <?= $recipe->getMakes(); ?></p>
+                        <p><a href="index.php?controller=make&task=addMakeRecipe&show=cake&id=<?= $recipe->id; ?>" class="btn btn-primary me-2"> Makes 🤍 </a> <?= $recipe->getMakes(); ?></p>
                     </form>
 
                     <div class="d-flex">

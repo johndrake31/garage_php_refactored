@@ -41,9 +41,9 @@ class Make extends Model
      */
     public function insert(int $id, $tablename): void
     {
-        if ($tablename == "cake_id") {
+        if ($tablename == "cake") {
             $maRequete = $this->pdo->prepare("INSERT INTO makes (cake_id) VALUES (:id)");
-        } elseif ($tablename == "recipe_id") {
+        } elseif ($tablename == "recipe") {
             $maRequete = $this->pdo->prepare("INSERT INTO makes (recipe_id) VALUES (:id)");
         }
         $maRequete->execute(['id' => $id]);

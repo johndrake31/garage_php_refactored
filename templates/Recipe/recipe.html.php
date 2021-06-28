@@ -3,7 +3,7 @@
     <div class="row col-4 bg-success">
         <h2><strong> <?= $recipe->name; ?> </strong></h2>
         <p>Recipe: <strong> <?= $recipe->description; ?> </strong></p>
-        <p><span class="btn btn-primary me-2"> Makes 🤍 </span> <?= $recipe->getMakes(); ?></p>
+        <p><a href="index.php?controller=make&task=addMakeRecipe&show=recipe&id=<?= $recipe->id; ?>" class="btn btn-primary me-2"> Makes 🤍 </a> <?= $recipe->getMakes(); ?></p>
         <a href="index.php?controller=cake&task=show&id=<?= $recipe->cake_id; ?>" class="btn btn-info my-3 ms-4" style="width: 200px">Back to Cake</a>
 
         <!-- EDIT RECIPE AREA -->

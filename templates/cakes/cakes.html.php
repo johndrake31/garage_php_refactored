@@ -33,13 +33,13 @@
     <div class="row">
         <?php
         foreach ($cakes as  $cake) { ?>
-            <div class="col-6 bg-success m-5">
+            <div class="col-5 bg-success m-2 mb-5 p-2">
 
-                <h2><?php echo $cake->title ?></h2>
+                <h3><?php echo $cake->title ?></h3>
                 <h4>Flavor: <?php echo $cake->flavor ?></h4>
                 <h6><?php echo $cake->description ?></h6>
-                <a><span class="btn btn-primary me-2"> Makes 🤍 </span></a>
-                <h6><?php echo $cake->getMakes() ?></h6>
+                <a href="index.php?controller=make&task=addMakeCake&id=<?= $cake->id; ?>"><span class="btn btn-primary me-2"> Makes 🤍 </span></a>
+                <h6 class="ms-4 mt-1"><?php echo $cake->getMakes() ?></h6>
                 <hr>
 
                 <a href="index.php?controller=cake&task=show&id=<?= $cake->id; ?>" class="btn btn-info mb-3">voir ce cake</a>
